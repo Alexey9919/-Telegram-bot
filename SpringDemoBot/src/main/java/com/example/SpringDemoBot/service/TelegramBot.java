@@ -39,7 +39,6 @@ public class TelegramBot extends TelegramLongPollingBot {
     final BotConfig config;
     static final String HELP_TEXT = "Вы нажали кнопку помощи, в данный момент я не могу решить вашу проблему\n\nОбратитесь позже";
     static final String DELETE_DATA = "Ваша анкета удалена!";
-    static final String DEFAULT = "Неизвестная команда, воспользуйтесь меню!";
 
     //Телеграм бот, который реализует 3 метода. Меню
     public TelegramBot(BotConfig config){
@@ -71,7 +70,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
-        //При получении сообщения, выянить ChatId
+        //При получении сообщения, выяcнить ChatId
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
@@ -106,98 +105,43 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 
 
-
                 ///////////////////////////////КНОПКА - МОЯ АНКЕТА//////////////////////////////
 
                 case "Моя анкета":
 
                     switch (update.getMessage().getChatId().intValue()) {
 
-                        case 1444138281:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Создаем вашу анкету..." + ":open_book:"));
-
-                            try {
-                                Thread.sleep(4000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Alexey.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Алексей, 20 лет, Зеленоград \nОбразование: МИЭТ \n" +
-                                    "Интересы: Мотоциклы, горные лыжи, фигурное катание(ну почти)\n" +
-                                    "Ссылка тг: https://t.me/alex4718\n");
+                        case 318297600:
+                            createText(chatId);
+                            Nicholas(chatId);
                             break;
-
 
 
                         case 1678196856:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Создаем вашу анкету..." + ":open_book:"));
-
-                            try {
-                                Thread.sleep(4000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Maks.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Максим, 20 лет, Зеленоград \nОбразование: МИЭТ \n" +
-                                    "Интересы: Теория автоматического управления, плавание, футбол\n" +
-                                    "Номер телефона: +79537165110\n");
-
+                            createText(chatId);
+                            Maks(chatId);
                             break;
-
-
 
 
                         case 810251155:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Создаем вашу анкету..." + ":open_book:"));
-
-                            try {
-                                Thread.sleep(4000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Yana.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Яна, 18 лет, Тверь \nОбразование: ТГМУ \n" +
-                                    "Интересы: Фигурное катание, книги, рисование, бег(особенно, когда опазывает на пары)\n" +
-                                    "Ссылка тг: https://t.me/yanamarsel\n");
-
+                            createText(chatId);
+                            Yana(chatId);
                             break;
-
 
 
                         case 1102166538:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Создаем вашу анкету..." + ":open_book:"));
-
-                            try {
-                                Thread.sleep(4000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Kristina.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Кристина, 18 лет, Тверь \nОбразование: ТГМУ \n" +
-                                    "Интересы: Гулять с Мускатом, книги, фильмы\n" +
-                                    "Ссылка тг: https://t.me/osyanya");
-
+                            createText(chatId);
+                            Kristina(chatId);
                             break;
-
 
 
                         default:
                             String names = update.getMessage().getChat().getFirstName();
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Создаем вашу анкету..." + ":open_book:"));
-
-                            try {
-                                Thread.sleep(4000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
+                            createText(chatId);
                             sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Anon.jpg", String.valueOf(chatId));
                             sendMessage(chatId, names);
-
-
                     }
                     break;
-
-
 
 
 
@@ -208,128 +152,107 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                     switch (update.getMessage().getChatId().intValue()) {
 
-
-                        case 1444138281:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Подбираю вам пару..." + ":two_hearts:"));
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, "Еще секунду...");
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Готово! Я нашел вам идеальную пару!" + ":heart:"));
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Yana.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Яна, 18 лет, Тверь \nОбразование: ТГМУ \n" +
-                                    "Интересы: Фигурное катание, книги, рисование, бег(особенно, когда опаздывает на пары)\n" +
-                                    "Ссылка тг: https://t.me/yanamarsel\n");
+                        case 318297600:
+                            searchText(chatId);
+                            Yana(chatId);
                             break;
-
 
 
                         case 1678196856:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Подбираю вам пару..." + ":two_hearts:"));
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, "Еще секунду...");
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Готово! Я нашел вам идеальную пару!" + ":heart:"));
-
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Kristina.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Кристина, 18 лет, Тверь \nОбразование: ТГМУ \n" +
-                                    "Интересы: Гулять с Мускатом, книги, фильмы\n" +
-                                    "Ссылка тг: https://t.me/osyanya\n");
+                            searchText(chatId);
+                            Kristina(chatId);
                             break;
-
-
 
 
                         case 810251155:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Подбираю вам пару..." + ":two_hearts:"));
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, "Еще секунду...");
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Готово! Я нашел вам идеальную пару!" + ":heart:"));
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Alexey.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Алексей, 20 лет, Зеленоград \nОбразование: Миэт \n" +
-                                    "Интересы: Мотоциклы, горные лыжи, фигурное катание(ну почти)\n" +
-                                    "Ссылка тг: https://t.me/alex4718\n");
+                            searchText(chatId);
+                            Nicholas(chatId);
                             break;
-
 
 
                         case 1102166538:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Подбираю вам пару..." + ":two_hearts:"));
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, "Еще секунду...");
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Готово! Я нашел вам идеальную пару!" + ":heart:"));
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Maks.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Максим, 20 лет, Зеленоград \nОбразование: Миэт \n" +
-                                    "Интересы: Теория автоматического управления, плавание, футбол\n" +
-                                    "Номер телефона: +79537165110\n");
-
+                            searchText(chatId);
+                            Maks(chatId);
                             break;
 
 
-
                         default:
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Подбираю вам пару..." + ":two_hearts:"));
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, "Еще секунду...");
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            sendMessage(chatId, EmojiParser.parseToUnicode("Готово! Я нашел вам идеальную пару!" + ":heart:"));
-                            sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Lazarev.jpg", String.valueOf(chatId));
-                            sendMessage(chatId, "Сергей Лазарев, 39 лет, Москва \nЛауреат премии <Золотой граммофон> \n" +
-                                    "Интересы: Творчество, спорт, фильмы\n" +
-                                    "Номер телефона: +79537784610\n");
+                            searchText(chatId);
+                            Sergey(chatId);
                     }
                     break;
-
             }
         }
     }
 
 
+    //Анкеты участников
+    private void Nicholas(long chatId) {
+        sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Kol.jpg", String.valueOf(chatId));
+        sendMessage(chatId, "Николай, 20 лет, Зеленоград \nОбразование: МИЭТ \n" +
+                "Интересы: Горные лыжи, футбол\n" +
+                "Ссылка тг: https://t.me/my_pepel\n");
+    }
+
+    private void Maks(long chatId) {
+        sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Maks.jpg", String.valueOf(chatId));
+        sendMessage(chatId, "Максим, 20 лет, Зеленоград \nОбразование: МИЭТ \n" +
+                "Интересы: Теория автоматического управления, плавание, футбол\n" +
+                "Номер телефона: +79537165110\n");
+    }
+
+    private void Kristina(long chatId) {
+        sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Kristina.jpg", String.valueOf(chatId));
+        sendMessage(chatId, "Кристина, 18 лет, Тверь \nОбразование: ТГМУ \n" +
+                "Интересы: Гулять с Мускатом, книги, фильмы\n" +
+                "Ссылка тг: https://t.me/osyanya");
+
+    }
+
+    private void Yana(long chatId) {
+        sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Yana.jpg", String.valueOf(chatId));
+        sendMessage(chatId, "Яна, 18 лет, Тверь \nОбразование: ТГМУ \n" +
+                "Интересы: Фигурное катание, книги, рисование, бег(особенно, когда опазывает на пары)\n" +
+                "Ссылка тг: https://t.me/yanamarsel\n");
+    }
+
+    private void Sergey(long chatId) {
+        sendImageUploadingAFile("C:\\JDK\\SpringNew\\SpringDemoBot\\src\\main\\resources\\static\\Lazarev.jpg", String.valueOf(chatId));
+        sendMessage(chatId, "Сергей Лазарев, 39 лет, Москва \nЛауреат премии <Золотой граммофон> \n" +
+                "Интересы: Творчество, спорт, фильмы\n" +
+                "Номер телефона: +79537784610\n");
+    }
 
 
 
+    //Действия, которые происходят при поиске пары
+    private void searchText(long chatId) {
+        sendMessage(chatId, EmojiParser.parseToUnicode("Подбираю вам пару..." + ":two_hearts:"));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        sendMessage(chatId, "Еще секунду...");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        sendMessage(chatId, EmojiParser.parseToUnicode("Готово! Я нашел вам идеальную пару!" + ":heart:"));
+    }
 
+
+    //Дейстия, которые происходят при создании анкеты
+    private void createText(long chatId) {
+        sendMessage(chatId, EmojiParser.parseToUnicode("Создаем вашу анкету..." + ":open_book:"));
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 
@@ -340,15 +263,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         String answer = EmojiParser.parseToUnicode(name + ", рады видеть тебя!\nТвин – телеграм бот, работающий на основе нейросети «Маяк». Данная сеть\n" +
                 "анализирует информацию с вашего телефона и подбирает вам идеальную пару.  Все очень просто, бот сам создаст вашу анкету, останется лишь нажать TWIN.\n" +
                 ":love_letter:");
-
         log.info("Replied to user " + name);
-
-
-
-
         sendMessage(chatId, answer);
-
-
 
     }
 
@@ -377,8 +293,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         message.setChatId(String.valueOf(chatId));
         message.setText(textToSend);
 
-
-
         List<KeyboardRow> keyboardRows = new ArrayList<>();
 
         KeyboardRow row = new KeyboardRow();
@@ -394,8 +308,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         message.setReplyMarkup(keyboardMarkup);
 
         executeMessage(message);
-
     }
+
 
     private void executeMessage(SendMessage message){
         try {
@@ -404,5 +318,4 @@ public class TelegramBot extends TelegramLongPollingBot {
             log.error("ERROR_TEXT" + e.getMessage());
         }
     }
-
 }
